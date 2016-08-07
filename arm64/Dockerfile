@@ -11,6 +11,7 @@ RUN set -xe \
        git \
        curl \
        cpio \
+       xz-utils \
     && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50 \
     && apt-get clean \
