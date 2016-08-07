@@ -4,9 +4,10 @@ DOCKER_IMAGE=$1
 [ -z "${DOCKER_IMAGE}" ] && exit 1
 
 KERNEL_PATH="/srv/kernel"
-sudo docker run -i --rm \
-     -v "${KERNEL_PATH}":/srv/kernel \
-     "${DOCKER_IMAGE}" /bin/bash -s <<EOF
+docker run -i --rm -u root --privileged \
+       -v "${KERNEL_PATH}":/srv/kernel \
+       "${DOCKER_IMAGE}" /bin/bash -s <<EOF
+
 set -x
 
 cd /srv/kernel
@@ -19,18 +20,17 @@ curl -sSL https://github.com/longsleep/build-pine64-image/raw/master/blobs/pine6
 curl -sSL https://github.com/yang-l/pine64-kernel/raw/config/config-3.10 -o linux-pine64/.config
 
 cd linux-pine64
+make LOCALVERSION= clean
 make LOCALVERSION= oldconfig
-make LOCALVERSION= -j 4 Image sun50i-a64-pine64-plus.dtb modules
+make -j4 LOCALVERSION= Image sun50i-a64-pine64-plus.dtb modules
 
 cp arch/arm64/boot/dts/sun50i-a64-pine64-plus.dtb arch/arm64/boot/Image ../kernel-output/boot/pine64
-make LOCALVERSION= modules_install INSTALL_MOD_PATH=../kernel-output
-make LOCALVERSION= firmware_install INSTALL_FW_PATH=../kernel-output/lib/firmware
-make LOCALVERSION= headers_install INSTALL_HDR_PATH=../kernel-output/usr
+make modules_install INSTALL_MOD_PATH=../kernel-output
+make firmware_install INSTALL_FW_PATH=../kernel-output/lib/firmware
+make headers_install INSTALL_HDR_PATH=../kernel-output/usr
 curl -sSL https://github.com/yang-l/pine64-kernel/raw/initrd/initrd.gz -o ../kernel-output/boot/initrd.img
 
-chown -R root:root ../kernel-output
 cd ../kernel-output
-
-tar cJf kernel.tar.xz ./boot ./lib ./usr
+tar cJpf kernel.tar.xz ./boot ./lib ./usr
 
 EOF
