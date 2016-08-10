@@ -5,6 +5,7 @@ RUN set -xe \
        make \
        gcc-5 \
        g++-5 \
+       binutils \
        bc \
        libncurses5-dev \
        bzip2 \
@@ -16,4 +17,3 @@ RUN set -xe \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-

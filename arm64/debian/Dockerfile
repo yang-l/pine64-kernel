@@ -5,6 +5,7 @@ RUN set -xe \
        make \
        gcc \
        g++ \
+       binutils \
        bc \
        libncurses5-dev \
        bzip2 \

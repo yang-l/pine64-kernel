@@ -13,6 +13,7 @@ RUN set -xe \
        curl \
        cpio \
        xz-utils \
+       u-boot-tools \
     && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 \
     && update-alternatives --install /usr/bin/aarch64-linux-gnu-gcc aarch64-linux-gnu-gcc /usr/bin/aarch64-linux-gnu-gcc-5 50 \
     && update-alternatives --install /usr/bin/aarch64-linux-gnu-g++ aarch64-linux-gnu-g++ /usr/bin/aarch64-linux-gnu-g++-5 50 \
