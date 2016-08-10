@@ -4,7 +4,8 @@ DOCKER_IMAGE=$1
 [ -z "${DOCKER_IMAGE}" ] && exit 1
 
 KERNEL_PATH="/srv/kernel"
-docker run -i --rm -u root --privileged \
+docker run -i --rm -u root \
+       --privileged --cap-add=ALL \
        -v "${KERNEL_PATH}":/srv/kernel \
        "${DOCKER_IMAGE}" /bin/bash -s <<EOF
 
