@@ -5,7 +5,8 @@ RUN set -xe \
        make \
        gcc-5 \
        g++-5 \
-       binutils \
+       build-essential \
+       kmod \
        bc \
        libncurses5-dev \
        bzip2 \
@@ -17,3 +18,8 @@ RUN set -xe \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN locale-gen en_US.UTF-8 \
+    && /usr/sbin/update-locale LANG=en_US.UTF-8
+
+ENV LC_ALL en_US.UTF-8
