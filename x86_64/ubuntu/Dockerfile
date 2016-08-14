@@ -6,7 +6,7 @@ RUN set -xe \
        gcc-5 \
        gcc-5-aarch64-linux-gnu \
        g++-5-aarch64-linux-gnu \
-       crossbuild-essential-arm64 \
+       kmod \
        bc \
        libncurses5-dev \
        bzip2 \
