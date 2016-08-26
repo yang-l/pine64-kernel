@@ -28,7 +28,7 @@ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- oldconfig || exit 1
 make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j4 LOCALVERSION= Image sun50i-a64-pine64-plus.dtb modules || exit 1
 
 cp arch/arm64/boot/dts/sun50i-a64-pine64-plus.dtb arch/arm64/boot/Image ./.config ../kernel-output/boot/pine64 || exit 1
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules_install INSTALL_MOD_PATH=../kernel-output || exit 1
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_STRIP=1 modules_install INSTALL_MOD_PATH=../kernel-output || exit 1
 make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- firmware_install INSTALL_FW_PATH=../kernel-output/lib/firmware || exit 1
 make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- headers_install INSTALL_HDR_PATH=../kernel-output/usr || exit 1
 curl -sSL https://github.com/yang-l/pine64-kernel/raw/initrd/initrd.gz -o ../kernel-output/boot/initrd.img || exit 1

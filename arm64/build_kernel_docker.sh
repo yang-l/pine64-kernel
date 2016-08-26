@@ -28,7 +28,7 @@ make oldconfig
 make -j4 LOCALVERSION= Image sun50i-a64-pine64-plus.dtb modules
 
 cp arch/arm64/boot/dts/sun50i-a64-pine64-plus.dtb arch/arm64/boot/Image ./.config ../kernel-output/boot/pine64
-make modules_install INSTALL_MOD_PATH=../kernel-output
+make INSTALL_MOD_STRIP=1 modules_install INSTALL_MOD_PATH=../kernel-output
 make firmware_install INSTALL_FW_PATH=../kernel-output/lib/firmware
 make headers_install INSTALL_HDR_PATH=../kernel-output/usr
 curl -sSL https://github.com/yang-l/pine64-kernel/raw/initrd/initrd.gz -o ../kernel-output/boot/initrd.img
