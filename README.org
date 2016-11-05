@@ -1,7 +1,14 @@
 #+TITLE: Script to build Linux kernel for Pine64
 #+OPTIONS: toc:2 num:nil
 
-This repository include bash scripts to build Linux kernel and initrd images for Pine64. All scripts are run via Docker. The dev images can be built with dockerfiles from [[https://github.com/yang-l/docker-in-travis-ci][here]].
+This repository includes bash scripts to build Linux kernel and initrd images for Pine64. All scripts are run via Docker. The dev images can be built with dockerfiles from [[https://github.com/yang-l/docker-in-travis-ci][here]].
 
-- x86__64 - this folder includes scripts cross-compiling arm64 kerenl on x86__64 hosts
+- x86_64 - this folder includes scripts cross-compiling arm64 kerenl on x86_64 hosts
 - arm64 - scripts under this folder can only be executed with docker images on a Pine64 (aarch64)
+
+To build a new kernel via Docker
+
+#+BEGIN_SRC bash
+$ cd arm64
+$ ./build_kernel_docker.sh build-kernel
+#+END_SRC
