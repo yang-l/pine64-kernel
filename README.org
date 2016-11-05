@@ -13,3 +13,5 @@ $ git clone https://github.com/yang-l/pine64-docker-for-kernel.git
 $ cd pine64-docker-for-kernel/arm64
 $ ./build_kernel_docker.sh build-kernel
 #+END_SRC
+
+The compiled initrd and image files are stored corresponding versioned branch.
