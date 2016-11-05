@@ -6,9 +6,10 @@ This repository includes bash scripts to build Linux kernel and initrd images fo
 - x86_64 - this folder includes scripts cross-compiling arm64 kerenl on x86_64 hosts
 - arm64 - scripts under this folder can only be executed with docker images on a Pine64 (aarch64)
 
-To build a new kernel via Docker
+To build a new kernel via Docker on Pine64 (the docker image =build-kernel= is required on Pine64 and pre-built with the above repo)
 
 #+BEGIN_SRC bash
-$ cd arm64
+$ git clone https://github.com/yang-l/pine64-docker-for-kernel.git
+$ cd pine64-docker-for-kernel/arm64
 $ ./build_kernel_docker.sh build-kernel
 #+END_SRC
